@@ -32,7 +32,7 @@ function createWeatherCard(weather) {
   div.classList.add("weather-card");
 
   let h3 = document.createElement("h3");
-  h3.textContent = weather.timezone;
+  h3.textContent = weather.resolvedAddress;
 
   let time = document.createElement("p");
   time.textContent = weather.currentConditions.datetime;
@@ -46,13 +46,20 @@ function createWeatherCard(weather) {
   //to get the correct icon
   icon.textContent = mapWeatherIcons(weather.currentConditions.icon);
 
+  let condition = document.createElement("p");
+  condition.textContent = weather.currentConditions.conditions;
+
+  let subDiv2 = document.createElement("div");
+  subDiv2.append(icon, condition);
+  subDiv2.classList.add("subDiv2");
+
   let temp = document.createElement("p");
   temp.textContent = `${weather.currentConditions.temp}°F`;
 
   let desc = document.createElement("p");
   desc.textContent = `Description: ${weather.description}`;
 
-  div.append(subDiv, icon, temp, desc);
+  div.append(subDiv, subDiv2, desc);
   weatherCont.append(div);
 }
 // the icon name from the api doesn't match the ones defined in material-symbols-outlined class. so we need to make an object and match them
