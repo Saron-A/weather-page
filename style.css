@@ -8,40 +8,45 @@ body {
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  /* background: url("https://images.unsplash.com/photo-1592210454359-9043f067919b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d2VhdGhlcnxlbnwwfHwwfHx8MA%3D%3D");
-  background-position-y: 20vh; */
+  position: relative;
+
+  background-image: url("assets/images/11.jpg"); /* Replace with your image URL */
+  background-size: cover; /* Ensures the image covers the screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+  height: 100vh; /* Full height of the screen */
+  margin: 0;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 90%;
   margin: 2% auto;
   padding: 10px;
-  background: linear-gradient(180deg, #e5e9ec, #e8ecef);
+  /* background: linear-gradient(180deg, #e5e9ec, #e8ecef); */
+  background-color: #51699144;
   color: #7d7f80;
   border-radius: 50px;
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.2);
 }
 h1,
 h2 {
-  text-align: center;
   padding: 20px;
-  color: #2d4758;
+  color: #c6c9d8;
 }
 input {
-  width: 80%;
+  width: 50%;
   border-radius: 30px;
-  display: block;
-  margin: 30px auto;
+  margin: 20px 0;
   height: 30px;
   border: 2px solid rgb(169, 167, 167);
   padding-left: 20px;
-  align-self: center;
 }
 input:focus {
+  background-color: rgba(240, 245, 246, 0.845);
   border: none;
-  background-color: rgba(174, 213, 229, 0.356);
+  outline: none;
 }
 input::placeholder {
   color: grey;
@@ -58,19 +63,29 @@ input::placeholder {
   display: grid;
   grid-template-columns: repeat(2, minmax(40%, 1fr));
   gap: 15px;
+  position: fixed;
+  top: 0; /* Sticks to the top */
+  right: 0; /* Sticks to the right */
+  height: 100vh; /* Makes it take the full height of the screen */
+  width: 25%; /* Adjust as needed */
+
+  background-color: #51699194;
 }
 
 .weather-card {
   display: flex;
-  padding: 20px 15px;
+
   gap: 10px;
+  padding: 10px;
   margin: 10px;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   flex-direction: column;
   flex-wrap: wrap;
-  color: black;
-  background-color: #c3ccd7;
+  position: fixed;
+  top: 0; /* Sticks to the top */
+  right: 0;
+  width: 23%;
 }
 
 .weather-card .location-time {
