@@ -57,19 +57,24 @@ input::placeholder {
   color: grey;
   font-style: italic;
   font-size: 30px;
+  align-self: center;
 }
 .weather {
   padding: 30px 15px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 1fr);
-  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   position: fixed;
-  top: 0; /* Sticks to the top */
-  right: 0; /* Sticks to the right */
-  height: 100vh; /* Makes it take the full height of the screen */
-  width: 25%; /* Adjust as needed */
-
-  background-color: #51699194;
+  top: 20px;
+  right: 10px; /* Sticks to the right */
+  /* Makes it take the full height of the screen */
+  bottom: 50px;
+  width: 30%; /* Adjust as needed */
+  /* 
+  background-color: #4c4c4c15; */
+  background: linear-gradient(to bottom, #4c4c4c00, #4c4c4c1d);
+  color: white;
 }
 
 .weather-card {
@@ -86,11 +91,13 @@ input::placeholder {
   background-color: #516991ee;
 }
 
-.weather-card .location-time {
+.location-time {
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  padding: 10px 0 0 0;
+  justify-content: flex-start;
+  padding-top: 10px;
+
+  width: 100%;
 }
 
 .location-time p {
@@ -101,4 +108,21 @@ input::placeholder {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.week {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.days {
+  /* display: flex;
+  gap: 10px;
+  justify-content: flex-start; */
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 2fr 0.5fr;
+  gap: 10px;
+  border-bottom: 1px solid rgba(44, 43, 43, 0.61);
+  padding: 0 0 5px 0;
 }

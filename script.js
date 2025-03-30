@@ -1,12 +1,10 @@
 let weatherCont = document.querySelector(".weather");
 let input = document.querySelector("#location");
 
-let weatherCards = JSON.parse(localStorage.getItem("weather")) || [];
-
-// if (weatherCont.innerHTML === "") {
-//   weatherCont.innerHTML = "No weather information";
-//   weatherCont.classList.add("weather-cont");
-// }
+if (weatherCont.innerHTML === "") {
+  weatherCont.innerHTML = "No weather information";
+  weatherCont.classList.add("weather-cont");
+}
 
 async function getWeatherInfo() {
   let location = input.value.toLowerCase().trim();
@@ -17,7 +15,9 @@ async function getWeatherInfo() {
     );
 
     const weather = await response.json();
+
     console.log(weather);
+
     createWeatherCard(weather);
   } catch (Error) {
     console.log("Error Fetching data", Error);
@@ -25,11 +25,12 @@ async function getWeatherInfo() {
 }
 
 function createWeatherCard(weather) {
-  // weatherCont.innerHTML = "";
+  weatherCont.innerHTML = "";
   weatherCont.classList.remove("weather-cont");
 
   let div = document.createElement("div");
-  div.classList.add("weather-card");
+  // div.classList.add("weather-card");
+  div.classList.add("weather");
 
   let h3 = document.createElement("h3");
   h3.textContent = weather.resolvedAddress;
@@ -57,9 +58,37 @@ function createWeatherCard(weather) {
   temp.textContent = `${weather.currentConditions.temp}°F`;
 
   let desc = document.createElement("p");
-  desc.textContent = `Description: ${weather.description}`;
+  desc.textContent = `${weather.description}`;
 
-  div.append(subDiv, subDiv2, desc);
+  let week = document.createElement("div");
+  week.classList.add("week");
+  let h2 = document.createElement("h2");
+  h2.textContent = "This Week's Forecast";
+  week.append(h2);
+
+  for (let i = 0; i < 7; i++) {
+    let dayi = document.createElement("div");
+    dayi.classList.add("days");
+
+    let iconn = document.createElement("span");
+    iconn.classList.add("material-symbols-outlined");
+    iconn.textContent = mapWeatherIcons(weather.days[i].icon);
+    console.log(mapWeatherIcons(weather.days[i].icon));
+
+    let datee = document.createElement("p");
+    datee.textContent = weather.days[i].datetime;
+
+    let conditionn = document.createElement("p");
+    conditionn.textContent = weather.days[i].conditions;
+
+    let tempp = document.createElement("p");
+    tempp.textContent = weather.days[i].temp;
+
+    dayi.append(iconn, datee, conditionn, tempp);
+    week.append(dayi);
+  }
+
+  div.append(subDiv, subDiv2, desc, week);
   weatherCont.append(div);
 }
 // the icon name from the api doesn't match the ones defined in material-symbols-outlined class. so we need to make an object and match them
